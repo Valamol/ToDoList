@@ -33,12 +33,6 @@ export function Menu({setPage}) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     menucontainer: {
         flex: 1,
         backgroundColor: '#fff',

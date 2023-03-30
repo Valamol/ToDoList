@@ -24,7 +24,6 @@ export function Liste({setPage}) {
     const setList = async () => {
         try {
             let reponse = await axios.post('http://192.168.43.246:8080/taches', { name, date, description});
-            console.log(reponse, "tt");
             setName('');
             setDate('');
             setTime('');
@@ -132,12 +131,6 @@ export function Liste({setPage}) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     listecontainer: {
         flex: 1,
         backgroundColor: '#fff',

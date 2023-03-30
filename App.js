@@ -2,14 +2,17 @@ import * as React from 'react';
 import {Menu} from "./components/Menu";
 import {Liste} from "./components/Liste";
 import {useState} from "react";
+import {AddConexion} from "./components/AddConexion";
 
 export default function App() {
-   const [page, setPage] = useState('menu');
+   const [page, setPage] = useState('adduser');
    if(page === 'menu') {
         return (<Menu setPage={setPage}/>)
     } else if(page === 'liste'){
         return(<Liste setPage={setPage}/>)
-    } else {
+    } else if(page === 'adduser'){
+       return(<AddConexion setPage={setPage}/>)
+   }  else {
       return(<Menu/>)
    }
 }
