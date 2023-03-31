@@ -23,7 +23,7 @@ export function Liste({setPage}) {
 
     const setList = async () => {
         try {
-            let reponse = await axios.post('http://192.168.43.246:8080/taches', { name, date, description});
+            let reponse = await axios.post('http://192.168.43.246:8080/public/taches', { name, date, description});
             setName('');
             setDate('');
             setTime('');

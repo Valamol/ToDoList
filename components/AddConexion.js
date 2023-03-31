@@ -16,14 +16,17 @@ export function AddConexion({setPage}) {
         };
     };
 
-    const setUser = async () => {
+    const register = async () => {
         try {
-            let reponse = await axios.post('http://192.168.43.246:8080/users', { pseudo, mdp, mail});
-            setPseudo('');
-            setmdp('');
-            setMail('');
+
+            const response = await axios.post("http://192.168.43.246:8080/public/users/register", {
+                mail,
+                pseudo,
+                mdp,
+            });
+            console.log('User registered:', response.data);
         } catch (error) {
-            console.error('Error adding user:', error);
+            console.error(' error:', error);
         }
     };
 
@@ -70,7 +73,7 @@ export function AddConexion({setPage}) {
             <View style={{ flex: 80,  width: '100%'}} >
             </View>
             <View style={{ flex: 7, width: '100%', alignItems: 'center', }} >
-                <TouchableOpacity style={styles.buttonValid} onPress={Valid(() => setPage('menu'), setUser)}>
+                <TouchableOpacity style={styles.buttonValid} onPress={Valid(() => setPage('menu'), register)}>
                     <Text style={styles.buttonText}>Valider</Text>
                 </TouchableOpacity>
             </View>
