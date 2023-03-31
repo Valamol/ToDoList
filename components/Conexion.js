@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import axios from 'axios'
 
 
@@ -17,21 +17,14 @@ export function Conexion({setPage}) {
             });
 
             if (response.data.status === 'success') {
-                console.log('User authenticated:', response.data.user);
-                setPage('menu')
+                console.log('User authenticated:', response.data.user.pseudo);
+                setPage('menu');
             } else {
                 console.error('Authentication error:', response.data.message);
             }
         } catch (error) {
             console.error('Login error:', error);
         }
-    };
-
-    const Valid = (f1, f2) => {
-        return () => {
-            f1();
-            f2();
-        };
     };
 
     return (

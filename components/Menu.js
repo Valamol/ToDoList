@@ -10,8 +10,9 @@ export function Menu({setPage}) {
         }]}>
             <View style={{ flex: 5, backgroundColor: "#e21616", width: '100%' }} >
             </View>
-            <View style={{alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
+            <View style={{flexDirection: "row", alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
                 <Text style={{ fontSize: 20, color: '#ffffff' }}>ToDoList</Text>
+                <Text style={{ fontSize: 20, color: '#ffffff' }}>pseudo</Text>
             </View>
             <View style={{ flex: 1, width: '100%' }} >
             </View>
