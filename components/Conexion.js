@@ -8,7 +8,6 @@ export function Conexion({setPage}) {
 
     const [pseudo, setPseudo] = useState('');
     const [mdp, setmdp] = useState('');
-    const [data, setData] = useState([]);
 
     const login = async () => {
         try {
@@ -19,7 +18,7 @@ export function Conexion({setPage}) {
 
             if (response.data.status === 'success') {
                 console.log('User authenticated:', response.data.user);
-                //() => setPage('menu');
+                setPage('menu')
             } else {
                 console.error('Authentication error:', response.data.message);
             }
