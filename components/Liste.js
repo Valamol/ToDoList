@@ -63,10 +63,11 @@ export function Liste({setPage}) {
         <View style={[styles.listecontainer, {
             flexDirection: "column"
         }]}>
-            <View style={{ flex: 5, backgroundColor: "#e21616", width: '100%'}} >
+            <View style={{ flex: 7, backgroundColor: "#e21616", width: '100%'}} >
             </View>
-            <View style={{alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>Ajout de Tâche</Text>
+            <View style={{flexDirection: "row", alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
+                <Text style={{flex: 1, fontSize: 20, color: '#ffffff' }}>Ajout de Tâches</Text>
+                <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right" }}>setUser</Text>
             </View>
             <View style={{ flex: 5, width: '100%'}} >
             </View>

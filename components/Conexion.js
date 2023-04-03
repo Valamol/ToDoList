@@ -4,7 +4,8 @@ import {useState} from 'react';
 import axios from 'axios'
 
 
-export function Conexion({setPage}) {
+
+export function Conexion({setPage},{setUser}) {
 
     const [pseudo, setPseudo] = useState('');
     const [mdp, setmdp] = useState('');
@@ -18,6 +19,7 @@ export function Conexion({setPage}) {
 
             if (response.data.status === 'success') {
                 console.log('User authenticated:', response.data.user.pseudo);
+                setUser(response.data.user.pseudo);
                 setPage('menu');
             } else {
                 console.error('Authentication error:', response.data.message);
