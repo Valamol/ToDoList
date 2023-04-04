@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 
 export function Menu({setPage, user}) {
     const [tasks, setTasks] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchTasksByUser = async () => {
