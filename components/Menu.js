@@ -5,23 +5,22 @@ import {useEffect, useState} from "react";
 
 
 export function Menu({setPage, user}) {
-    const [tasks, setTasks] = useState([]);
+    const [taches, setTache] = useState([]);
 
     useEffect(() => {
-        const fetchTasksByUser = async () => {
+        const fetchTacheByUser = async () => {
+            console.log(user, 'ceci est le user');
             try {
-                const response = await axios.post(`http://192.168.43.246:8080/public/taches/byUser`, user);
-                setTasks(response.data);
-                console.log(response);
+                const reponse = await axios.post(`http://192.168.43.246:8080/public/taches/byUser`, {user:user});
+                setTache(reponse.data);
+                console.log(reponse);
             } catch (error) {
                 console.error("Erreur lors de la récupération des tâches :", error);
             }
         };
 
-        fetchTasksByUser();
+        fetchTacheByUser();
     }, [user]);
-
-
 
     return (
         <View style={[styles.menucontainer, {
