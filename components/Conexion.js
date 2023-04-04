@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 
-export function Conexion({setPage},{setUser}) {
+export function Conexion({setPage,setUser}) {
 
     const [pseudo, setPseudo] = useState('');
     const [mdp, setmdp] = useState('');
