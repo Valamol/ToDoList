@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
+import {Pressable, StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import {useEffect, useState} from "react";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 export function Menu({setPage, user, userID}) {
@@ -28,10 +29,14 @@ export function Menu({setPage, user, userID}) {
             <View style={[styles.listItem, {
                 flexDirection: "row"
             }]}>
-                <Text style={[styles.title, {flex: 1}]}>{item.name}</Text>
-                <Text style={[styles.date, {flex: 1}]}>{item.date}</Text>
+                <Text style={[styles.title, {flex: 10}]}>{item.name}</Text>
+                <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
+
             </View>
             <Text style={styles.description}>{item.description}</Text>
+            <TouchableOpacity onPress={console.log("delete")}>
+                <Icon style={styles.delete} name="trash-outline" />
+            </TouchableOpacity>
         </View>
     );
 
@@ -42,8 +47,8 @@ export function Menu({setPage, user, userID}) {
             <View style={{ flex: 5, backgroundColor: "#e21616", width: '100%' }} >
             </View>
             <View style={{flexDirection: "row", alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
-                <Text style={{flex: 1, fontSize: 20, color: '#ffffff' }}>ToDoList</Text>
-                <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right" }}>{user}</Text>
+                <Text style={{flex: 1, fontSize: 20, color: '#ffffff', padding: 5 }}>ToDoList</Text>
+                <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right", padding: 5 }}>{user}</Text>
             </View>
             <View style={{ flex: 1, width: '100%' }} >
             </View>
@@ -53,8 +58,8 @@ export function Menu({setPage, user, userID}) {
                     <Text >Ajouter une tâche</Text>
                 </Pressable>
             </View>
-            <View style={{ flex: 92, width: '100%' }} >
-                <View style={styles.container}>
+            <View style={{ flex: 92, width: '100%'}} >
+                <View >
                     <FlatList
                         data={taches}
                         renderItem={renderItem}
@@ -99,5 +104,11 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 14,
+    },
+    delete: {
+        fontSize: 30,
+        color: "#FF0000",
+        textAlign: "center",
+        padding: 5,
     },
 });
