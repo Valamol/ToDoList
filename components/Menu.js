@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Pressable, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import {useEffect, useState} from "react";
+import {Recherche} from "./Recherche";
 
 
 export function Menu({setPage, user, userID}) {
@@ -30,6 +31,7 @@ export function Menu({setPage, user, userID}) {
             <View style={{flexDirection: "row", alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
                 <Text style={{flex: 1, fontSize: 20, color: '#ffffff' }}>ToDoList</Text>
                 <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right" }}>{user}</Text>
+                <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right" }}>{Recherche}</Text>
             </View>
             <View style={{ flex: 1, width: '100%' }} >
             </View>

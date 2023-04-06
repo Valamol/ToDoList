@@ -65,7 +65,7 @@ export function Recherche({setPage}) {
 }
 
 const styles = StyleSheet.create({
-    Recherchecontainer: {
+    recherchecontainer: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
