@@ -22,6 +22,16 @@ export function Menu({setPage, user, userID}) {
         fetchTacheByUser();
     }, [user]);
 
+
+    /*const deleteTaches = async (TachesID) => {
+        try {
+            const test = await axios.delete(`http://192.168.43.246:8080/public/taches/` + TachesID);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des tâches :", error);
+        }
+    };
+*/
+
     const renderItem = ({ item }) => (
         <View style={[styles.listItem, {
             flexDirection: "column", elevation: 20,
@@ -34,7 +44,7 @@ export function Menu({setPage, user, userID}) {
 
             </View>
             <Text style={styles.description}>{item.description}</Text>
-            <TouchableOpacity onPress={console.log("delete")}>
+            <TouchableOpacity onPress={console.log(item.id)}>
                 <Icon style={styles.delete} name="trash-outline" />
             </TouchableOpacity>
         </View>
