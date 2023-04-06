@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {Pressable, StyleSheet, Text, View } from 'react-native';
+import {Pressable, StyleSheet, Text, View, FlatList } from 'react-native';
 import axios from 'axios';
 import {useEffect, useState} from "react";
+import ViewabilityHelper from "react-native-web/dist/vendor/react-native/ViewabilityHelper";
 
 
 export function Menu({setPage, user, userID}) {
@@ -10,7 +11,7 @@ export function Menu({setPage, user, userID}) {
     useEffect(() => {
         const fetchTacheByUser = async () => {
             try {
-                const reponse = await axios.get(`http://192.168.1.104:8080/public/taches/byUser/` + userID);
+                const reponse = await axios.get(`http://192.168.43.246:8080/public/taches/byUser/` + userID);
                 setTache(reponse.data);
                 console.log(reponse.data);
             } catch (error) {
@@ -20,6 +21,20 @@ export function Menu({setPage, user, userID}) {
 
         fetchTacheByUser();
     }, [user]);
+
+    const renderItem = ({ item }) => (
+        <View style={[styles.listItem, {
+            flexDirection: "column", elevation: 20,
+        }]}>
+            <View style={[styles.listItem, {
+                flexDirection: "row"
+            }]}>
+                <Text style={[styles.title, {flex: 1}]}>{item.name}</Text>
+                <Text style={[styles.date, {flex: 1}]}>{item.date}</Text>
+            </View>
+            <Text style={styles.description}>{item.description}</Text>
+        </View>
+    );
 
     return (
         <View style={[styles.menucontainer, {
@@ -40,7 +55,13 @@ export function Menu({setPage, user, userID}) {
                 </Pressable>
             </View>
             <View style={{ flex: 92, width: '100%' }} >
-
+                <View style={styles.container}>
+                    <FlatList
+                        data={taches}
+                        renderItem={renderItem}
+                        keyExtractor={(item) => item.id.toString()}
+                    />
+                </View>
             </View>
         </View>
     );
@@ -61,4 +82,24 @@ const styles = StyleSheet.create({
         height: '95%',
         alignItems: 'center',
     },
+    listItem: {
+        backgroundColor: '#303030',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: "left",
+    },
+    date: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: "right",
+    },
+    description: {
+        fontSize: 14,
+    },
+
 });

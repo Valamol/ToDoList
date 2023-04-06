@@ -12,7 +12,7 @@ export function Conexion({setPage,setUser, setUserID}) {
 
     const login = async () => {
         try {
-            const response = await axios.post('http://192.168.1.104:8080/public/users/login', {
+            const response = await axios.post('http://192.168.43.246:8080/public/users/login', {
                 pseudo,
                 mdp
             });
