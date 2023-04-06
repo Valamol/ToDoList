@@ -5,20 +5,21 @@ import axios from 'axios'
 
 
 
-export function Conexion({setPage,setUser}) {
+export function Conexion({setPage,setUser, setUserID}) {
 
     const [pseudo, setPseudo] = useState('');
     const [mdp, setmdp] = useState('');
 
     const login = async () => {
         try {
-            const response = await axios.post('http://192.168.43.246:8080/public/users/login', {
+            const response = await axios.post('http://192.168.1.104:8080/public/users/login', {
                 pseudo,
                 mdp
             });
 
             if (response.data.status === 'success') {
-                console.log('User authenticated:', response.data.user.pseudo);
+                console.log('User authenticated:', response.data.user.id);
+                setUserID(response.data.user.id);
                 setUser(response.data.user.pseudo);
                 setPage('menu');
             } else {

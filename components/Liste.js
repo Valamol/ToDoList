@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios'
 
 
-export function Liste({setPage, user}) {
+export function Liste({setPage, user, userID}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [mode, setMode] = useState('date');
@@ -23,7 +23,7 @@ export function Liste({setPage, user}) {
 
     const setList = async () => {
         try {
-            let reponse = await axios.post('http://192.168.43.246:8080/public/taches', { name, date, description, user});
+            let reponse = await axios.post('http://192.168.1.104:8080/public/taches/', { name, date, description, user: userID});
             setName('');
             setDate('');
             setTime('');

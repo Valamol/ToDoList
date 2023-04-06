@@ -9,14 +9,15 @@ import {Conexion} from "./components/Conexion";
 export default function App() {
    const [page, setPage] = useState('conexion');
    const [user, setUser] = useState('');
+   const [userID, setUserID] = useState(null);
    if(page === 'menu') {
-        return (<Menu setPage={setPage} user={user}/>)
+        return (<Menu setPage={setPage} user={user} userID={userID}/>)
     } else if(page === 'liste'){
-        return(<Liste setPage={setPage} user={user}/>)
+        return(<Liste setPage={setPage} user={user} userID={userID}/>)
     } else if(page === 'adduser'){
        return(<AddConexion setPage={setPage}/>)
    } else if(page === 'conexion'){
-       return(<Conexion setPage={setPage} setUser={setUser} />)
+       return(<Conexion setPage={setPage} setUser={setUser} setUserID={setUserID}/>)
    } else {
       return(<Menu/>)
    }

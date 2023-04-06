@@ -19,7 +19,7 @@ export function AddConexion({setPage}) {
     const register = async () => {
         try {
 
-            const response = await axios.post("http://192.168.43.246:8080/public/users/register", {
+            const response = await axios.post("http://192.168.1.104:8080/public/users/register", {
                 mail,
                 pseudo,
                 mdp,

@@ -4,16 +4,15 @@ import axios from 'axios';
 import {useEffect, useState} from "react";
 
 
-export function Menu({setPage, user}) {
+export function Menu({setPage, user, userID}) {
     const [taches, setTache] = useState([]);
 
     useEffect(() => {
         const fetchTacheByUser = async () => {
-            console.log(user, 'ceci est le user');
             try {
-                const reponse = await axios.post(`http://192.168.43.246:8080/public/taches/byUser`, {user:user});
+                const reponse = await axios.get(`http://192.168.1.104:8080/public/taches/byUser/` + userID);
                 setTache(reponse.data);
-                console.log(reponse);
+                console.log(reponse.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des tâches :", error);
             }
