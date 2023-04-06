@@ -7,6 +7,7 @@ import * as Updates from 'expo-updates';
 
 export function Menu({setPage, user, userID}) {
     const [taches, setTache] = useState([]);
+    const [refresh, setRefresh] = useState(false);
 
 
     useEffect(() => {
@@ -39,8 +40,8 @@ export function Menu({setPage, user, userID}) {
         };
     };
 
-    async function refreshPage() {
-        await Updates.reloadAsync();
+    function refreshPage() {
+        setRefresh((prev) => !prev);
     }
 
     const renderItem = ({ item }) => (

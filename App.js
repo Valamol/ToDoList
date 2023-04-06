@@ -4,6 +4,7 @@ import {Liste} from "./components/Liste";
 import {useState} from "react";
 import {AddConexion} from "./components/AddConexion";
 import {Conexion} from "./components/Conexion";
+import {Recherche} from "./components/Recherche";
 
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
    } else if(page === 'conexion'){
        return(<Conexion setPage={setPage} setUser={setUser} setUserID={setUserID}/>)
    } else if(page === 'recherche'){
-       return(<Conexion setPage={setPage} />)
+       return(<Recherche setPage={setPage} />)
    } else {
       return(<Menu/>)
    }
