@@ -1,38 +1,33 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import axios from 'axios'
 
 
-export function Conexion({setPage}) {
+
+export function Conexion({setPage,setUser, setUserID}) {
 
     const [pseudo, setPseudo] = useState('');
     const [mdp, setmdp] = useState('');
-    const [data, setData] = useState([]);
 
     const login = async () => {
         try {
-            const response = await axios.post('http://192.168.43.246:8080/public/users/login', {
+            const response = await axios.post('http://192.168.1.104:8080/public/users/login', {
                 pseudo,
                 mdp
             });
 
             if (response.data.status === 'success') {
-                console.log('User authenticated:', response.data.user);
-                //() => setPage('menu');
+                console.log('User authenticated:', response.data.user.id);
+                setUserID(response.data.user.id);
+                setUser(response.data.user.pseudo);
+                setPage('menu');
             } else {
                 console.error('Authentication error:', response.data.message);
             }
         } catch (error) {
             console.error('Login error:', error);
         }
-    };
-
-    const Valid = (f1, f2) => {
-        return () => {
-            f1();
-            f2();
-        };
     };
 
     return (

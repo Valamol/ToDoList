@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios'
 
 
-export function Liste({setPage}) {
+export function Liste({setPage, user, userID}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [mode, setMode] = useState('date');
@@ -23,7 +23,7 @@ export function Liste({setPage}) {
 
     const setList = async () => {
         try {
-            let reponse = await axios.post('http://192.168.43.246:8080/public/taches', { name, date, description});
+            let reponse = await axios.post('http://192.168.1.104:8080/public/taches/', { name, date, description, user: userID});
             setName('');
             setDate('');
             setTime('');
@@ -63,10 +63,11 @@ export function Liste({setPage}) {
         <View style={[styles.listecontainer, {
             flexDirection: "column"
         }]}>
-            <View style={{ flex: 5, backgroundColor: "#e21616", width: '100%'}} >
+            <View style={{ flex: 7, backgroundColor: "#e21616", width: '100%'}} >
             </View>
-            <View style={{alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>Ajout de Tâche</Text>
+            <View style={{flexDirection: "row", alignItems: 'center', flex: 5, backgroundColor: "#e21616", width: '100%' }} >
+                <Text style={{flex: 1, fontSize: 20, color: '#ffffff' }}>Ajout de tache</Text>
+                <Text style={{flex: 1, fontSize: 10, color: '#ffffff', textAlign: "right" }}>{user}</Text>
             </View>
             <View style={{ flex: 5, width: '100%'}} >
             </View>

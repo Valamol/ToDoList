@@ -19,7 +19,7 @@ export function AddConexion({setPage}) {
     const register = async () => {
         try {
 
-            const response = await axios.post("http://192.168.43.246:8080/public/users/register", {
+            const response = await axios.post("http://192.168.1.104:8080/public/users/register", {
                 mail,
                 pseudo,
                 mdp,
@@ -73,7 +73,7 @@ export function AddConexion({setPage}) {
             <View style={{ flex: 80,  width: '100%'}} >
             </View>
             <View style={{ flex: 7, width: '100%', alignItems: 'center', }} >
-                <TouchableOpacity style={styles.buttonValid} onPress={Valid(() => setPage('menu'), register)}>
+                <TouchableOpacity style={styles.buttonValid} onPress={Valid(() => setPage('conexion'), register)}>
                     <Text style={styles.buttonText}>Valider</Text>
                 </TouchableOpacity>
             </View>

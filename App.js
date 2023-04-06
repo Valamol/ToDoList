@@ -4,7 +4,6 @@ import {Liste} from "./components/Liste";
 import {useState} from "react";
 import {AddConexion} from "./components/AddConexion";
 import {Conexion} from "./components/Conexion";
-import {Recherche} from "./components/Recherche";
 
 export default function App() {
    const [page, setPage] = useState('conexion');
