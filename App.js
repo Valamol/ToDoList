@@ -4,6 +4,7 @@ import {Liste} from "./components/Liste";
 import {useState} from "react";
 import {AddConexion} from "./components/AddConexion";
 import {Conexion} from "./components/Conexion";
+import {Recherche} from "./components/Recherche";
 
 export default function App() {
    const [page, setPage] = useState('conexion');
@@ -15,6 +16,8 @@ export default function App() {
        return(<AddConexion setPage={setPage}/>)
    } else if(page === 'conexion'){
        return(<Conexion setPage={setPage}/>)
+   } else if(page === 'Recherche') {
+       return (<Recherche setPage={setPage}/>)
    } else {
       return(<Menu/>)
    }
