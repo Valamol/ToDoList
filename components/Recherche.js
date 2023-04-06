@@ -61,43 +61,44 @@ export function Recherche({setPage}) {
             </View>
             <View style={{ flex: 78,  width: '100%'}} >
             </View>
-    );
-}
+            );
+            }
 
-const styles = StyleSheet.create({
-    recherchecontainer: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    button: {
-        backgroundColor: '#e21616' ,
-        borderRadius:10,
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-    },
-    buttonValid: {
-        backgroundColor: '#29c51d' ,
-        borderRadius:10,
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    input: {
-        width: '100%',
-        borderColor: 'gray',
-        borderWidth: 1,
-        padding: 10,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-        justifyContent: 'center',
-    },
-});
+
+            const styles = StyleSheet.create({
+            recherchecontainer: {
+            flex: 1,
+            backgroundColor: '#fff',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+            button: {
+            backgroundColor: '#e21616' ,
+            borderRadius:10,
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+        },
+            buttonValid: {
+            backgroundColor: '#29c51d' ,
+            borderRadius:10,
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+        },
+            title: {
+            fontSize: 24,
+            fontWeight: 'bold',
+        },
+            input: {
+            width: '100%',
+            borderColor: 'gray',
+            borderWidth: 1,
+            padding: 10,
+        },
+            buttonText: {
+            color: 'white',
+            fontWeight: 'bold',
+            justifyContent: 'center',
+        },
+        });
