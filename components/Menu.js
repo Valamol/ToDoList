@@ -15,7 +15,6 @@ export function Menu({setPage, user, userID}) {
             try {
                 const reponse = await axios.get(`http://192.168.43.246:8080/public/taches/byUser/` + userID);
                 setTache(reponse.data);
-                console.log(reponse.data);
             } catch (error) {
                 console.error("Erreur lors de la récupération des tâches :", error);
             }

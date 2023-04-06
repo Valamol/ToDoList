@@ -24,7 +24,6 @@ export function AddConexion({setPage}) {
                 pseudo,
                 mdp,
             });
-            console.log('User registered:', response.data);
         } catch (error) {
             console.error(' error:', error);
         }

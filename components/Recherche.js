@@ -1,23 +1,46 @@
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList} from 'react-native';
 import {useState} from 'react';
 import axios from 'axios'
 
-
-
-export function Recherche({setPage,setUser, userID}) {
+export function Recherche({setPage,setUser}) {
 
     const [EltRecherche, setEltRecherche] = useState('');
+    const [taches, setTache] = useState([]);
+    const [loookUserID, setLoookUserID] = useState(null);
 
-    const login = async () => {
+    const searchUserID = async () => {
         try {
-            const reponse = await axios.get(`http://192.168.43.246:8080/public/taches/byUser/` + userID);
+            const reponse = await axios.get(`http://192.168.43.246:8080/public/users/byUser/` + EltRecherche);
+            setLoookUserID(reponse.data.id);
+            search();
+        } catch (error) {
+            console.error("Erreur lors de la récupération des tâches :", error);
+        }
+    }
+    const search = async () => {
+        try {
+            const reponse = await axios.get(`http://192.168.43.246:8080/public/taches/byUser/` + loookUserID);
             setTache(reponse.data);
-            console.log(reponse.data);
         } catch (error) {
             console.error("Erreur lors de la récupération des tâches :", error);
         }
     };
+
+    const renderItemSearch = ({ item }) => (
+        <View style={[styles.listItem, {
+            flexDirection: "column", elevation: 20,
+        }]}>
+            <View style={[styles.listItem, {
+                flexDirection: "row"
+            }]}>
+                <Text style={[styles.titlelist, {flex: 10}]}>{item.name}</Text>
+                <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
+
+            </View>
+            <Text style={styles.description}>{item.description}</Text>
+        </View>
+    );
 
     return (
         <View style={[styles.Recherchecontainer, {
@@ -45,9 +68,16 @@ export function Recherche({setPage,setUser, userID}) {
             </View>
 
             <View style={{ flex: 78,  width: '100%'}} >
+                <View >
+                    <FlatList
+                        data={taches}
+                        renderItem={renderItemSearch}
+                        keyExtractor={(item) => item.id.toString()}
+                    />
+                </View>
             </View>
             <View style={{ flex: 7, width: '100%', alignItems: 'center', }} >
-                <TouchableOpacity style={styles.buttonValid} onPress={login}>
+                <TouchableOpacity style={styles.buttonValid} onPress={searchUserID}>
                     <Text style={styles.buttonText}>Valider</Text>
                 </TouchableOpacity>
             </View>
@@ -97,5 +127,24 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         justifyContent: 'center',
+    },
+    listItem: {
+        backgroundColor: '#303030',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+    },
+    titlelist: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: "left",
+    },
+    date: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: "right",
+    },
+    description: {
+        fontSize: 14,
     },
 });

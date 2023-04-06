@@ -18,7 +18,6 @@ export function Conexion({setPage,setUser, setUserID}) {
             });
 
             if (response.data.status === 'success') {
-                console.log('User authenticated:', response.data.user.id);
                 setUserID(response.data.user.id);
                 setUser(response.data.user.pseudo);
                 setPage('menu');
