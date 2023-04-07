@@ -55,6 +55,7 @@ export function Conexion({setPage,setUser, setUserID}) {
                     style={styles.input}
                     value={mdp}
                     onChangeText={setmdp}
+                    secureTextEntry = {true}
                     placeholder="Mot de passe"
                 />
             </View>
