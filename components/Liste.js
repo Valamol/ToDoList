@@ -23,7 +23,9 @@ export function Liste({setPage, user, userID}) {
 
     const setList = async () => {
         try {
-            let reponse = await axios.post('http://192.168.43.246:8080/public/taches/', { name, date, description, user: userID});
+            let timeF = formatTime(time);
+            console.log(time);
+            let reponse = await axios.post('http://192.168.43.246:8080/public/taches/', { name, date, timeF, description, user: userID});
             setName('');
             setDate('');
             setTime('');
@@ -33,11 +35,19 @@ export function Liste({setPage, user, userID}) {
         }
     };
 
+    const formatTime = (date) => {
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
 
     const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
+        const currentDate = selectedDate || date || time;
         setShow(false);
         setDate(currentDate);
+
     };
 
     const showMode = (currentMode) => {

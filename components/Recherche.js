@@ -35,8 +35,10 @@ export function Recherche({setPage,setUser}) {
                 flexDirection: "row"
             }]}>
                 <Text style={[styles.titlelist, {flex: 10}]}>{item.name}</Text>
-                <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
-
+                <View style={{flexDirection: "column"}}>
+                    <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
+                    <Text style={[styles.time, {flex: 10}]}>{item.timeF}</Text>
+                </View>
             </View>
             <Text style={styles.description}>{item.description}</Text>
         </View>
@@ -138,6 +140,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: "left",
+    },
+    time: {
+        fontSize: 15,
+        textAlign: "right",
     },
     date: {
         fontSize: 20,

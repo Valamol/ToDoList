@@ -45,14 +45,15 @@ export function Menu({setPage, user, userID}) {
 
     const renderItem = ({ item }) => (
         <View style={[styles.listItem, {
-            flexDirection: "column", elevation: 20,
-        }]}>
+            flexDirection: "column", elevation: 20,}]}>
             <View style={[styles.listItem, {
                 flexDirection: "row"
             }]}>
                 <Text style={[styles.title, {flex: 10}]}>{item.name}</Text>
-                <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
-
+                <View style={{flexDirection: "column"}}>
+                    <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
+                    <Text style={[styles.time, {flex: 10}]}>{item.timeF}</Text>
+                </View>
             </View>
             <Text style={styles.description}>{item.description}</Text>
             <TouchableOpacity onPress={() => Valid(refreshPage, deleteTaches(item.id))}>
@@ -124,6 +125,10 @@ const styles = StyleSheet.create({
     date: {
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: "right",
+    },
+    time: {
+        fontSize: 15,
         textAlign: "right",
     },
     description: {
