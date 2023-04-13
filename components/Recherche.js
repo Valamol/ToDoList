@@ -2,6 +2,7 @@ import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, TextInput, FlatList} from 'react-native';
 import {useState} from 'react';
 import axios from 'axios'
+import Icon from "react-native-vector-icons/Ionicons";
 
 export function Recherche({setPage,setUser}) {
 
@@ -27,22 +28,26 @@ export function Recherche({setPage,setUser}) {
         }
     };
 
-    const renderItemSearch = ({ item }) => (
-        <View style={[styles.listItem, {
-            flexDirection: "column", elevation: 20,
-        }]}>
+    const renderItemSearch = ({ item }) => {
+        let date = new Date(item.date+"T"+item.timeF+".000Z");
+        return(
             <View style={[styles.listItem, {
-                flexDirection: "row"
+                flexDirection: "column", elevation: 20,
             }]}>
-                <Text style={[styles.titlelist, {flex: 10}]}>{item.name}</Text>
-                <View style={{flexDirection: "column"}}>
-                    <Text style={[styles.date, {flex: 10}]}>{item.date}</Text>
-                    <Text style={[styles.time, {flex: 10}]}>{item.timeF}</Text>
+                <View style={[styles.listItem, {
+                    flexDirection: "row"
+                }]}>
+                    <Text style={[styles.title, {flex: 10}]}>{item.name}</Text>
+                    <View style={{flexDirection: "column"}}>
+                        <Text
+                            style={[styles.date, {flex: 10}]}>{date.toLocaleDateString()}</Text>
+                        <Text style={[styles.time, {flex: 10}]}>{date.toLocaleTimeString()}</Text>
+                    </View>
                 </View>
+                <Text style={styles.description}>{item.description}</Text>
             </View>
-            <Text style={styles.description}>{item.description}</Text>
-        </View>
-    );
+        )
+    };
 
     return (
         <View style={[styles.Recherchecontainer, {
@@ -141,13 +146,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: "left",
     },
-    time: {
-        fontSize: 15,
-        textAlign: "right",
-    },
     date: {
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: "right",
+    },
+    time: {
+        fontSize: 15,
         textAlign: "right",
     },
     description: {

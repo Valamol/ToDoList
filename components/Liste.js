@@ -1,72 +1,40 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
 import { useState } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, {DateTimePickerAndroid} from '@react-native-community/datetimepicker';
 import axios from 'axios'
 
 
 export function Liste({setPage, user, userID}) {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [mode, setMode] = useState('date');
-    const [value, setValue] = useState(date);
-    const [show, setShow] = useState(false);
     const [date, setDate] = useState(new Date());
-    const [time, setTime] = useState(new Date());
-
-    const Valid = (f1, f2) => {
-        return () => {
-            f1();
-            f2();
-        };
-    };
 
     const setList = async () => {
         try {
-            let timeF = formatTime(time);
-            console.log(time);
-            let reponse = await axios.post('http://192.168.43.246:8080/public/taches/', { name, date, timeF, description, user: userID});
+            let dateF = date.toISOString().split('T')[0];
+            let timeF = date.toISOString().split('T')[1].split(".")[0];
+            console.log(timeF, dateF);
+            let reponse = await axios.post('http://192.168.43.246:8080/public/taches/', { name, date:dateF, timeF, description, user: userID});
             setName('');
-            setDate('');
-            setTime('');
             setDescription('');
+            setPage('menu');
         } catch (error) {
             console.error('Error adding tache:', error);
         }
     };
 
-    const formatTime = (date) => {
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        const seconds = date.getSeconds();
-
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const showMode = (currentMode) => {
+        DateTimePickerAndroid.open({
+            value: date,
+            onChange,
+            mode: currentMode,
+            is24Hour: true,
+        });
     };
 
     const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date || time;
-        setShow(false);
-        setDate(currentDate);
-
-    };
-
-    const showMode = (currentMode) => {
-        setShow(true);
-        setMode(currentMode);
-    };
-
-    const showValue = (currentValue) => {
-        setValue(currentValue);
-    }
-
-    const showDatepicker = () => {
-        showMode('date');
-        showValue(date);
-    };
-
-    const showTimepicker = () => {
-        showMode('time');
-        showValue(time);
+        setDate(selectedDate);
     };
 
     return (
@@ -102,31 +70,23 @@ export function Liste({setPage, user, userID}) {
             <View style={{ flex: 2,  width: '100%'}} >
             </View>
             <View style={{flex: 7, width: '100%', alignItems: 'center',}}>
-                <TouchableOpacity style={styles.button} onPress={showDatepicker}>
+                <TouchableOpacity style={styles.button} onPress={() => showMode('date')}>
                     <Text style={styles.buttonText}>Date</Text>
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 2,  width: '100%'}} >
             </View>
             <View style={{flex: 7, width: '100%', alignItems: 'center',}}>
-                <TouchableOpacity style={styles.button} onPress={showTimepicker}>
+                <TouchableOpacity style={styles.button} onPress={() => showMode('time')}>
                 <Text style={styles.buttonText}>Heure</Text>
             </TouchableOpacity>
             </View>
-            {show && (
-                <DateTimePicker
-                    testID="dateTimePicker"
-                    value={value}
-                    mode={mode}
-                    is24Hour={true}
-                    display="default"
-                    onChange={onChange}
-                />
-            )}
+
+
             <View style={{ flex: 76, backgroundColor: "#ffffff", width: '100%'}} >
             </View>
             <View style={{ flex: 7, width: '100%', alignItems: 'center', }} >
-                <TouchableOpacity style={styles.buttonValid} onPress={Valid(() => setPage('menu'), setList)}>
+                <TouchableOpacity style={styles.buttonValid} onPress={setList}>
                     <Text style={styles.buttonText}>Ajouter Tâche</Text>
                 </TouchableOpacity>
             </View>
